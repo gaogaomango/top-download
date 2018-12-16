@@ -5,14 +5,14 @@ import android.util.Log
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 
-class ParseUtil {
-    private val TAG = ParseUtil::class.simpleName
+class ParseFeedData {
+    private val TAG = ParseFeedData::class.simpleName
 
     val feedDatas = ArrayList<FeedEntry>();
 
 
     fun parse(xmlData: String): Boolean {
-        Log.d(TAG, "parse called with $xmlData")
+//        Log.d(TAG, "parse called with $xmlData")
         var status = true
         var inEntry = false
         var textValue = ""
@@ -35,13 +35,13 @@ class ParseUtil {
                     }
 
                     XmlPullParser.TEXT -> {
-                        Log.d(TAG, "parse: text for " + xpp.text)
+//                        Log.d(TAG, "parse: text for " + xpp.text)
                         textValue = xpp.text
                     }
                     XmlPullParser.END_TAG -> {
-Log.d(TAG, "parse: Ending tag for " + tagName)
-                        if(inEntry) {
-                            when(tagName) {
+                        Log.d(TAG, "parse: Ending tag for " + tagName)
+                        if (inEntry) {
+                            when (tagName) {
                                 "entry" -> {
                                     feedDatas.add(currentRecord)
                                     inEntry = false

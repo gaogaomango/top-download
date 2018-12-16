@@ -13,5 +13,20 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+
+        val str: String = "a"
+
+        if("a".equals(str)) {
+            println("等しい")
+        } else {
+            println("等しくない")
+        }
+
+        if("a" == str) {
+            println("等しい")
+        } else {
+            println("等しくない")
+        }
+
     }
 }

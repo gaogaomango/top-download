@@ -21,21 +21,20 @@ class MainActivity : AppCompatActivity() {
         private class DownloadData : AsyncTask<String, Void, String>() {
             private val TAG : String = DownloadData::class.java.simpleName
 
-            override fun onPostExecute(result: String?) {
-                super.onPostExecute(result)
-                Log.d(TAG, "onPostExecute parameter is ${result.toString()}")
-            }
-
             override fun doInBackground(vararg params: String?): String {
                 Log.d(TAG, "doInBackground parameter is $params")
-                for (p in params) {
-                    print(p)
-                }
                 val rssFeed = downloadUrl(params.getOrNull(0))
                 if(rssFeed.isEmpty()) {
                     Log.e(TAG, "doInBackground: Error downloading")
                 }
                 return rssFeed
+            }
+
+            override fun onPostExecute(result: String) {
+                super.onPostExecute(result)
+//                Log.d(TAG, "onPostExecute parameter is ${result.toString()}")
+                var parseUtil = ParseUtil();
+                parseUtil.parse(result)
             }
 
             private fun downloadUrl(url : String?): String {
